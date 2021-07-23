@@ -12,6 +12,7 @@
             data-ad-client="ca-pub-4894867893560937"
             data-ad-slot="9393876079"
             data-full-width-responsive="yes"
+            data-ad-test="on"
           >
           </InFeedAdsense>
         </div>
@@ -22,6 +23,7 @@
             data-ad-client="ca-pub-4894867893560937"
             data-ad-slot="6581485251"
             data-full-width-responsive="yes"
+            data-ad-test="on"
           >
           </Adsense>
         </div>
@@ -163,6 +165,7 @@
             data-ad-client="ca-pub-4894867893560937"
             data-ad-slot="3080583317"
             data-full-width-responsive="yes"
+            data-ad-test="on"
           ></InFeedAdsense>
         </div>
         <v-divider style="margin: 15px"></v-divider>
@@ -172,6 +175,7 @@
             data-ad-client="ca-pub-4894867893560937"
             data-ad-slot="5459975273"
             data-full-width-responsive="yes"
+            data-ad-test="on"
           >
           </Adsense>
         </div>
@@ -187,7 +191,6 @@ import Drawer from "./components/Drawer.vue";
 import AppBar from "./components/AppBar.vue";
 import About from "./components/About.vue";
 import TgPopup from "./components/TgPopup.vue";
-// eslint-disable-next-line no-unused-vars
 import { mapState } from "vuex";
 
 import Plyr from "plyr";
@@ -218,14 +221,7 @@ let app = {
         return this.items;
       }
     },
-    roots: {
-      get() {
-        return this.$store.state.roots;
-      },
-      set(val) {
-        this.$store.commit("rootsUpdate", val);
-      },
-    },
+    ...mapState(["roots"]),
   },
 
   mounted() {
@@ -251,6 +247,10 @@ let app = {
       this.fetchItems(item.Id);
     },
     download: function(item) {
+      this.$gtag.event("event", {
+        event_label: "Download File",
+        value: item.Id,
+      });
       fetch(`${baseUrl}/System/CreateToken?id=${item.Id}`)
         .then((resp) => resp.text())
         .then((data) => {
@@ -264,6 +264,10 @@ let app = {
       window.open(link, "newtab");
     },
     play: function(item) {
+      this.$gtag.event("event", {
+        event_label: "Play Video",
+        value: item.Id,
+      });
       let data = window.btoa(item.Id);
       history.pushState({}, null, `/?player=${data}`);
       this.initPlayer(data);

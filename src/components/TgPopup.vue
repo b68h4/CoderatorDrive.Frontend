@@ -12,7 +12,10 @@
                 <v-card-subtitle>
                   <h2>Coderator</h2>
                 </v-card-subtitle>
-                <v-btn href="https://t.me/coderator" target="_blank"
+                <v-btn
+                  href="https://t.me/coderator"
+                  @click="join"
+                  target="_blank"
                   >Katıl</v-btn
                 >
               </div>
@@ -26,7 +29,10 @@
                 <v-card-subtitle>
                   <h2>Coderator | Topluluk</h2>
                 </v-card-subtitle>
-                <v-btn href="https://t.me/coderatorchat" target="_blank"
+                <v-btn
+                  href="https://t.me/coderatorchat"
+                  @click="join"
+                  target="_blank"
                   >Katıl</v-btn
                 >
               </div>
@@ -60,9 +66,14 @@ export default {
       }
       this.popup = false;
     },
+    join: function() {
+      this.$gtag.event("event", {
+        event_label: "Open Telegram Link",
+        value: "Join",
+      });
+    },
   },
   mounted() {
-    console.log(localStorage.donotshow);
     if (localStorage.donotshow == "true") {
       this.popup = false;
     }

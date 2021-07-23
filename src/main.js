@@ -42,8 +42,5 @@ Vue.use(VueGtag, {
 new Vue({
   vuetify,
   store,
-  async beforeCreate() {
-    await this.$store.dispatch("fetchRoots");
-  },
   render: (h) => h(App),
 }).$mount("#app");
