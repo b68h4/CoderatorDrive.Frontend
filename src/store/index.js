@@ -9,8 +9,8 @@ export default new Vuex.Store({
     searchData: null,
     about: false,
     roots: {
-      main: "0AFNh4jBace1RUk9PVA",
-      featured: "1nErxDXlnITS9I3VB0ZoICqI0-Bv5ZTb7",
+      main: "FOLDERID",
+      featured: "FOLDERID",
     },
 
     menu: [

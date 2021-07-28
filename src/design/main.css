@@ -9,9 +9,11 @@
 #plyrct {
   max-width: 1185px !important;
 }
-/* .body {
-  background: #121212;
-} */
+:root {
+  --plyr-color-main: #00ad5f;
+  --plyr-control-radius: 15px;
+  --plyr-menu-radius: 12px;
+}
 .search-bar {
   max-width: 20%;
 }

@@ -1,6 +1,6 @@
 <template>
   <v-app app>
-    <v-main>
+    <v-main v-if="!ads">
       <AppBar></AppBar>
       <Drawer></Drawer>
       <v-container v-show="!player" id="container">
@@ -8,11 +8,10 @@
           <InFeedAdsense
             v-if="!player"
             data-ad-format="fluid"
-            data-ad-layout-key="-fa+3c+ch-ao-il"
+            data-ad-layout-key="-fa+3t+b1-cd-c6"
             data-ad-client="ca-pub-4894867893560937"
             data-ad-slot="9393876079"
             data-full-width-responsive="yes"
-            data-ad-test="on"
           >
           </InFeedAdsense>
         </div>
@@ -23,11 +22,14 @@
             data-ad-client="ca-pub-4894867893560937"
             data-ad-slot="6581485251"
             data-full-width-responsive="yes"
-            data-ad-test="on"
           >
           </Adsense>
         </div>
-        <h2 v-if="meta != null" class="d-flex justify-center mb-6">
+        <h2
+          style="margin-top: 3px;"
+          v-if="meta != null"
+          class="d-flex justify-center mb-6"
+        >
           {{ meta.Name }}
         </h2>
         <div
@@ -147,12 +149,10 @@
         </p>
       </v-container>
       <v-container id="plyrct" v-show="player">
-        <video id="plyr"></video>
+        <video class="plyr-theme" id="plyr"></video>
         <v-card elevation="2" style="margin-top: 16px" v-if="meta != null">
           <v-card-subtitle>
             <h3>{{ meta.Name }}</h3>
-
-            <h5>0 İzlenme</h5>
             <h5>{{ meta.ModTime }} Tarihinde Yüklendi</h5>
           </v-card-subtitle>
         </v-card>
@@ -161,11 +161,10 @@
           <InFeedAdsense
             v-if="player"
             data-ad-format="fluid"
-            data-ad-layout-key="-ad+da-8e-uk+2eq"
+            data-ad-layout-key="-ak+bq-2w-7v+p8"
             data-ad-client="ca-pub-4894867893560937"
             data-ad-slot="3080583317"
             data-full-width-responsive="yes"
-            data-ad-test="on"
           ></InFeedAdsense>
         </div>
         <v-divider style="margin: 15px"></v-divider>
@@ -175,13 +174,32 @@
             data-ad-client="ca-pub-4894867893560937"
             data-ad-slot="5459975273"
             data-full-width-responsive="yes"
-            data-ad-test="on"
           >
           </Adsense>
         </div>
       </v-container>
       <About></About>
       <TgPopup></TgPopup>
+    </v-main>
+    <v-main v-else>
+      <v-container>
+        <v-spacer></v-spacer>
+        <v-card align="center" class="text-center">
+          <div style="padding: 25px;" class="text-center">
+            <h1>Tarayıcınızda reklam engelleyicisi tespit edildi!</h1>
+            <h4>
+              Sitemizin masrafları reklam gelirleri üzerinden sağlanmaktadır.
+              Lütfen siteye erişmek için reklam engelleyicinizi kapatın.
+            </h4>
+            <v-btn
+              color="red"
+              style="margin-top: 10px;"
+              onclick="location.reload()"
+              >Reklam Engelleyiciyi Kapattım!</v-btn
+            >
+          </div>
+        </v-card>
+      </v-container>
     </v-main>
   </v-app>
 </template>
@@ -195,7 +213,7 @@ import { mapState } from "vuex";
 
 import Plyr from "plyr";
 
-const baseUrl = "http://localhost:3933";
+const baseUrl = "";
 let app = {
   name: "Depo",
   components: { Drawer, AppBar, About, TgPopup },
@@ -205,6 +223,7 @@ let app = {
       plyr: null,
       meta: null,
       player: false,
+      ads: false,
     };
   },
   computed: {
@@ -223,33 +242,70 @@ let app = {
     },
     ...mapState(["roots"]),
   },
-
-  mounted() {
-    this.processUrl();
-
-    window.onpopstate = () => {
-      if (this.plyr != null) {
-        this.plyr.stop();
-        this.plyr.media.src = "";
+  updated() {
+    detectV1((res) => {
+      if (res == true) {
+        this.ads = true;
       }
-
-      this.player = false;
-
-      this.searchData = null;
-      this.search = false;
+    });
+    detectV2((res) => {
+      if (res == true) {
+        this.ads = true;
+      }
+    });
+    if (this.ads) {
+      this.$gtag.event("adblock_detected", {
+        event_category: "adblock_detected",
+        event_label: document.title,
+        value: 1,
+      });
+    }
+  },
+  mounted() {
+    detectV1((res) => {
+      if (res == true) {
+        this.ads = true;
+      }
+    });
+    detectV2((res) => {
+      if (res == true) {
+        this.ads = true;
+      }
+    });
+    if (!this.ads) {
       this.processUrl();
-    };
+
+      window.onpopstate = () => {
+        if (this.plyr != null) {
+          this.plyr.stop();
+          this.plyr.media.src = "";
+        }
+
+        this.player = false;
+
+        this.searchData = null;
+        this.search = false;
+        this.processUrl();
+      };
+    } else {
+      this.$gtag.event("adblock_detected", {
+        event_category: "adblock_detected",
+        event_label: document.title,
+        value: 1,
+      });
+    }
   },
 
   methods: {
     open: function(item) {
-      history.pushState({}, null, `/?folder=${window.btoa(item.Id)}`);
+      history.pushState({}, null, `/?folder=${item.Id}`);
       this.fetchItems(item.Id);
     },
     download: function(item) {
-      this.$gtag.event("event", {
-        event_label: "Download File",
-        value: item.Id,
+      this.$gtag.event("download_file", {
+        event_category: "download_file",
+        event_label: item.Name,
+        value: "Download",
       });
       fetch(`${baseUrl}/System/CreateToken?id=${item.Id}`)
         .then((resp) => resp.text())
@@ -264,20 +320,21 @@ let app = {
       window.open(link, "newtab");
     },
     play: function(item) {
-      this.$gtag.event("event", {
-        event_label: "Play Video",
-        value: item.Id,
+      this.$gtag.event("play_video", {
+        event_category: "play_video",
+        event_label: item.Name,
+        value: "Play",
       });
-      let data = window.btoa(item.Id);
-      history.pushState({}, null, `/?player=${data}`);
-      this.initPlayer(data);
+
+      history.pushState({}, null, `/?player=${item.Id}`);
+      this.initPlayer(item.Id);
     },
     processUrl() {
       const urlParams = new URLSearchParams(window.location.search);
       const folder = urlParams.get("folder");
       const player = urlParams.get("player");
       if (folder != null) {
-        this.fetchItems(window.atob(folder));
+        this.fetchItems(folder);
       } else if (player != null) {
         this.initPlayer(player);
       } else {
@@ -294,12 +351,12 @@ let app = {
     },
     initPlayer(id) {
       this.player = true;
-      this.fill(window.atob(id));
+      this.fill(id);
 
       if (this.plyr == null) {
-        // eslint-disable-next-line no-undef
         this.plyr = new Plyr(document.getElementById("plyr"));
       }
+
       this.plyr.media.src = `${baseUrl}/System/Player?data=${id}`;
     },
     fetchItems(id) {
@@ -315,6 +372,49 @@ let app = {
     },
   },
 };
-
+// eslint-disable-next-line no-unused-vars
+function detectV1(n) {
+  var t = "https://adblockanalytics.com";
+  if (window.fetch) {
+    var e = new Request(t, { method: "HEAD", mode: "no-cors" });
+    fetch(e)
+      .then(function(t) {
+        404 === t.status ? n(!1) : n("unknown (" + t.status + ")");
+      })
+      // eslint-disable-next-line no-unused-vars
+      .catch(function(t) {
+        n(!0);
+      });
+  } else {
+    var c = new XMLHttpRequest();
+    c.open("HEAD", t, !1);
+    try {
+      c.send();
+    } catch (t) {
+      n(!0);
+    }
+    404 === c.status ? n(!1) : n("unknown (" + c.status + ")");
+  }
+}
+function detectV2(callback) {
+  const url = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
+  const options = {
+    method: "HEAD",
+    mode: "no-cors",
+  };
+  const request = new Request(url, options);
+  fetch(request)
+    .then((res) => {
+      return res;
+    })
+    // eslint-disable-next-line no-unused-vars
+    .then((response) => {
+      callback(false);
+    })
+    // eslint-disable-next-line no-unused-vars
+    .catch((e) => {
+      callback(true);
+    });
+}
 export default app;
 </script>

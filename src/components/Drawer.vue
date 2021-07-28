@@ -23,11 +23,10 @@
       </v-list-item>
     </v-list>
     <template v-slot:append>
-      <v-list nav dense rounded>
+      <v-list rounded>
         <v-list-item>
           <v-checkbox
             class="justify-center"
-            style="margin-bottom: 4px;"
             v-model="donotshow"
             @click.stop="msgclck"
             label="Hoşgeldin Mesajını Gösterme"

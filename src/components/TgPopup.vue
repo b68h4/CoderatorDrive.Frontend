@@ -6,7 +6,7 @@
         <v-row>
           <v-col md="6">
             <v-spacer></v-spacer>
-            <v-card align="center" elevation="3" width="600" height="200">
+            <v-card align="center" elevation="3" width="800" height="200">
               <div style="padding-top:30px;">
                 <v-icon elevation="2" size="72">mdi-telegram</v-icon>
                 <v-card-subtitle>
@@ -14,7 +14,7 @@
                 </v-card-subtitle>
                 <v-btn
                   href="https://t.me/coderator"
-                  @click="join"
+                  @click="join('channel')"
                   target="_blank"
                   >Katıl</v-btn
                 >
@@ -23,7 +23,7 @@
           </v-col>
           <v-col md="6">
             <v-spacer></v-spacer>
-            <v-card align="center" elevation="3" width="600" height="200">
+            <v-card align="center" elevation="3" width="800" height="200">
               <div style="padding-top:30px;">
                 <v-icon elevation="2" size="72">mdi-telegram</v-icon>
                 <v-card-subtitle>
@@ -31,7 +31,7 @@
                 </v-card-subtitle>
                 <v-btn
                   href="https://t.me/coderatorchat"
-                  @click="join"
+                  @click="join('chat')"
                   target="_blank"
                   >Katıl</v-btn
                 >
@@ -66,9 +66,10 @@ export default {
       }
       this.popup = false;
     },
-    join: function() {
-      this.$gtag.event("event", {
-        event_label: "Open Telegram Link",
+    join: function(type) {
+      this.$gtag.event("open_telegram_link", {
+        event_category: "open_telegram_link",
+        event_label: type,
         value: "Join",
       });
     },

@@ -60,5 +60,10 @@ export default {
       },
     },
   },
+  methods: {
+    toLink: function(link) {
+      window.open(link, "newtab");
+    },
+  },
 };
 </script>

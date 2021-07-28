@@ -2,7 +2,7 @@
   <v-app-bar app overflow-hidden elevate-on-scroll>
     <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
     <v-icon
-      onclick="roots.featured"
+      @click="redirect"
       style="--fa-flash-opacity: 0.24; --fa-flash-scale: 1.4; margin: 2px"
       >fa-solid fa-stars fa-flash</v-icon
     >
@@ -20,6 +20,7 @@
       style="margin-top: 24px"
       v-model="search"
       color="primary"
+      @click="searchData = null"
       class="mdi-18px"
       off-icon="mdi-magnify"
       on-icon="mdi-magnify"
@@ -45,6 +46,11 @@ export default {
     };
   },
   created() {},
+  methods: {
+    redirect: function() {
+      window.location = `/?folder=${this.roots.featured}`;
+    },
+  },
   computed: {
     drawer: {
       get() {

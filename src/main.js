@@ -7,6 +7,7 @@ import Ads from "vue-google-adsense";
 import * as Sentry from "@sentry/vue";
 import { Integrations } from "@sentry/tracing";
 import VueGtag from "vue-gtag";
+import router from './router'
 
 Vue.config.productionTip = false;
 Vue.use(require("vue-script2"));
@@ -42,5 +43,6 @@ Vue.use(VueGtag, {
 new Vue({
   vuetify,
   store,
-  render: (h) => h(App),
+  router,
+  render: (h) => h(App)
 }).$mount("#app");
