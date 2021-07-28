@@ -1,5 +1,6 @@
 <template>
   <v-app app>
+    <router-view></router-view>
     <v-main v-if="!ads">
       <AppBar></AppBar>
       <Drawer></Drawer>
@@ -25,6 +26,7 @@
           >
           </Adsense>
         </div>
+        <router-link to="/reader">Reader</router-link>
         <h2
           style="margin-top: 3px;"
           v-if="meta != null"
@@ -213,7 +215,7 @@ import { mapState } from "vuex";
 
 import Plyr from "plyr";
 
-const baseUrl = "";
+const baseUrl = "http://localhost:3933";
 let app = {
   name: "Depo",
   components: { Drawer, AppBar, About, TgPopup },

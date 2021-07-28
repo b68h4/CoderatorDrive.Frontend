@@ -11,6 +11,7 @@
     "@sentry/tracing": "^6.10.0",
     "@sentry/vue": "^6.10.0",
     "core-js": "^3.6.5",
+    "pdfobject": "^2.2.6",
     "plyr": "^3.6.8",
     "vue": "^2.6.11",
     "vue-google-adsense": "^1.9.3",
@@ -53,7 +54,8 @@
         {
           "allowUsingIterationVar": false
         }
-      ]
+      ],
+      "no-undef": "warn"
     }
   },
   "browserslist": [
