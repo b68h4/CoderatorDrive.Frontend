@@ -13,6 +13,7 @@
             data-ad-client="ca-pub-4894867893560937"
             data-ad-slot="9393876079"
             data-full-width-responsive="yes"
+            is-new-ads-code="yes"
           >
           </InFeedAdsense>
         </div>
@@ -23,6 +24,7 @@
             data-ad-client="ca-pub-4894867893560937"
             data-ad-slot="6581485251"
             data-full-width-responsive="yes"
+            is-new-ads-code="yes"
           >
           </Adsense>
         </div>
@@ -167,6 +169,7 @@
             data-ad-client="ca-pub-4894867893560937"
             data-ad-slot="3080583317"
             data-full-width-responsive="yes"
+            is-new-ads-code="yes"
           ></InFeedAdsense>
         </div>
         <v-divider style="margin: 15px"></v-divider>
@@ -176,6 +179,7 @@
             data-ad-client="ca-pub-4894867893560937"
             data-ad-slot="5459975273"
             data-full-width-responsive="yes"
+            is-new-ads-code="yes"
           >
           </Adsense>
         </div>

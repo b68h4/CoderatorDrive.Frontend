@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     pdfInit() {
-      PDFObject.embed("allah.pdf", "#pdf");
+      PDFObject.embed("test.pdf", "#pdf");
     },
   },
 };

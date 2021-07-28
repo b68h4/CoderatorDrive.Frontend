@@ -7,14 +7,17 @@ import Ads from "vue-google-adsense";
 import * as Sentry from "@sentry/vue";
 import { Integrations } from "@sentry/tracing";
 import VueGtag from "vue-gtag";
-import router from './router'
+import router from "./router";
 
 Vue.config.productionTip = false;
 Vue.use(require("vue-script2"));
 Vue.use(Ads.Adsense);
 Vue.use(Ads.InArticleAdsense);
 Vue.use(Ads.InFeedAdsense);
-Vue.use(Ads.AutoAdsense, { adClient: "ca-pub-4894867893560937" });
+Vue.use(Ads.AutoAdsense, {
+  adClient: "ca-pub-4894867893560937",
+  isNewAdsCode: true,
+});
 Sentry.init({
   Vue,
   dsn:
@@ -30,9 +33,6 @@ Sentry.init({
       ],
     }),
   ],
-  // Set tracesSampleRate to 1.0 to capture 100%
-  // of transactions for performance monitoring.
-  // We recommend adjusting this value in production
   tracesSampleRate: 1.0,
 });
 Vue.use(VueGtag, {
@@ -44,5 +44,5 @@ new Vue({
   vuetify,
   store,
   router,
-  render: (h) => h(App)
+  render: (h) => h(App),
 }).$mount("#app");
