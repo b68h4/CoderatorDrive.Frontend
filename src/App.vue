@@ -28,7 +28,7 @@
           >
           </Adsense>
         </div>
-        <router-link to="/reader">Reader</router-link>
+        <router-link href="" to="/reader">Reader</router-link>
         <h2
           style="margin-top: 3px;"
           v-if="meta != null"

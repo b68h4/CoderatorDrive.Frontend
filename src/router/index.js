@@ -1,10 +1,12 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Reader from "../components/Reader.vue";
+import { Reader, Player, Main } from "../pages/";
 
 Vue.use(VueRouter);
 
 const routes = [
+  { path: "/", name: "Depo", component: Main },
+  { path: "/Player", name: "Player", component: Player },
   {
     path: "/reader",
     name: "PDF Reader",
@@ -13,6 +15,7 @@ const routes = [
 ];
 
 const router = new VueRouter({
+  mode: "history",
   routes,
 });
 
