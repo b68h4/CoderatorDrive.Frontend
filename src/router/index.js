@@ -1,6 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import { Reader, Player, Main } from "../pages/";
+import Reader from "../pages/Reader.vue";
+import Player from "../pages/Player.vue";
+import Main from "../pages/Main.vue";
 
 Vue.use(VueRouter);
 
