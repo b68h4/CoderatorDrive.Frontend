@@ -6,17 +6,7 @@
   -o-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
   -ms-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
 }
-#plyrct {
-  max-width: 1185px !important;
-}
-:root {
-  --plyr-color-main: #00ad5f;
-  --plyr-control-radius: 15px;
-  --plyr-menu-radius: 12px;
-}
-.search-bar {
-  max-width: 20%;
-}
+
 .table-item {
   cursor: pointer;
 }
@@ -30,20 +20,14 @@
 .click-cursor {
   cursor: pointer;
 }
-.player-section {
-  float: left;
-  margin-left: 3px;
-}
+
 @media only screen and (max-width: 1000px) {
-  .search-bar {
-    max-width: 50%;
-  }
   .modtime {
     display: none;
   }
 }
 @media (min-width: 1500px) {
   .table-width {
-    max-width: 70%;
+    max-width: 70% !important;
   }
 }

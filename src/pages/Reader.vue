@@ -1,7 +1,9 @@
 <template>
   <v-container>
-    <div class="reader" v-if="support" id="pdf"></div>
-    <v-container v-else>
+    <iframe class="reader" v-bind:src="url"></iframe>
+
+    <!-- <div class="reader" v-if="support" id="pdf"></div> -->
+    <!-- <v-container v-else>
       <v-spacer></v-spacer>
       <v-card align="center" class="text-center">
         <div style="padding: 25px;" class="text-center">
@@ -17,41 +19,39 @@
           >
         </div>
       </v-card>
-    </v-container>
+    </v-container> -->
   </v-container>
 </template>
 
 <script>
-import PDFObject from "pdfobject";
-const baseUrl = "http://192.168.1.22:3933";
+import { mapState } from "vuex";
 export default {
   name: "Reader",
   data() {
     return {
-      support: true,
+      url: null,
     };
+  },
+  computed: {
+    ...mapState(["baseUrl"]),
   },
   components: {},
   mounted() {
-    if (PDFObject.supportsPDFs) {
-      let id = this.$route.query.file;
-      const url = `${baseUrl}/System/Reader?data=${id}`;
-
-      PDFObject.embed(url, "#pdf");
-      //PDFObject.embed("test.pdf", "#pdf");
-    } else {
-      this.support = false;
-    }
+    let id = this.$route.query.file;
+    this.url = `/pdfjs/web/viewer.html?file=${id}`;
   },
   methods: {
     download: function() {
-      document.location.href = `${baseUrl}/System/Reader?data=${this.$route.query.file}`;
+      document.location.href = `${this.baseUrl}/System/Reader?data=${this.$route.query.file}`;
     },
   },
 };
 </script>
 <style>
 .reader {
-  height: 70rem;
+  height: 60rem;
+  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
 }
 </style>

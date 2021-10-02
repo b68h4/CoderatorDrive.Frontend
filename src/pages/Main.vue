@@ -1,5 +1,4 @@
 <template>
-  <!-- <v-container id="container"> -->
   <div>
     <div align="center">
       <InFeedAdsense
@@ -8,7 +7,6 @@
         data-ad-client="ca-pub-4894867893560937"
         data-ad-slot="9393876079"
         data-full-width-responsive="yes"
-        is-new-ads-code="yes"
       >
       </InFeedAdsense>
     </div>
@@ -18,7 +16,6 @@
         data-ad-client="ca-pub-4894867893560937"
         data-ad-slot="6581485251"
         data-full-width-responsive="yes"
-        is-new-ads-code="yes"
       >
       </Adsense>
     </div>
@@ -108,7 +105,7 @@
               onCopy="return false"
             >
               <v-icon size="28px" color="primary" class="table-icon">
-                fas fa-file-video
+                fas fa-file-pdf
               </v-icon>
               {{ item.Name }}
             </td>
@@ -155,12 +152,12 @@
       {{ filteredItems.length }} Öğe Gösteriliyor.
     </p>
   </div>
-  <!-- </v-container> -->
 </template>
 
 <script>
 import { mapState } from "vuex";
-const baseUrl = "http://192.168.1.22:3933";
+import "@/design/main.css";
+
 export default {
   name: "Depo",
   data() {
@@ -184,7 +181,7 @@ export default {
         return this.items;
       }
     },
-    ...mapState(["roots"]),
+    ...mapState(["roots", "baseUrl"]),
   },
   mounted() {
     this.processUrl();
@@ -214,10 +211,10 @@ export default {
         event_label: item.Name,
         value: "Download",
       });
-      fetch(`${baseUrl}/System/CreateToken?id=${item.Id}`)
+      fetch(`${this.baseUrl}/System/CreateToken?id=${item.Id}`)
         .then((resp) => resp.text())
         .then((data) => {
-          document.location.href = `${baseUrl}/System/Download?token=${data}`;
+          document.location.href = `${this.baseUrl}/System/Download?token=${data}`;
         });
     },
     reader: function(item) {
@@ -240,7 +237,6 @@ export default {
       //     query: { file: item.Id },
       //   });
       document.location.href = `/Player?file=${item.Id}`;
-      //history.pushState({}, null, `/?player=${item.Id}`);
     },
     processUrl() {
       const folder = this.$route.query.folder;
@@ -252,7 +248,7 @@ export default {
       }
     },
     fill(id) {
-      fetch(`${baseUrl}/System/Query?id=${id}`)
+      fetch(`${this.baseUrl}/System/Query?id=${id}`)
         .then((response) => response.json())
         .then((data) => {
           document.title = data.Name;
@@ -265,7 +261,7 @@ export default {
       if (this.items != null) {
         this.items = null;
       }
-      fetch(`${baseUrl}/System/List?id=${id}`)
+      fetch(`${this.baseUrl}/System/List?id=${id}`)
         .then((response) => response.json())
         .then((data) => {
           this.items = data.Items;

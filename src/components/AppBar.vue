@@ -38,6 +38,7 @@
 
 <script>
 import { mapState } from "vuex";
+import "@/design/appbar.css";
 export default {
   name: "AppBar",
   data() {

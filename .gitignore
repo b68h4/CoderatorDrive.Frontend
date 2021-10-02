@@ -1,7 +1,8 @@
 .DS_Store
 node_modules
 /dist
-
+/dist - Kopya
+/public/pdfjs
 
 # local env files
 .env.local

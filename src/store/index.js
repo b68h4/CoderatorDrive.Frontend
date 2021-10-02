@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 Vue.use(Vuex);
-const baseUrl = "http://localhost:3933";
+
 export default new Vuex.Store({
   state: {
     drawer: false,
@@ -12,7 +12,7 @@ export default new Vuex.Store({
       main: "FOLDERID",
       featured: "FOLDERID",
     },
-
+    baseUrl: "",
     menu: [
       {
         title: "Ana Sayfa",
@@ -50,7 +50,7 @@ export default new Vuex.Store({
   },
   actions: {
     fetchRoots(con) {
-      fetch(`${baseUrl}/System/Roots`)
+      fetch(`${this.baseUrl}/System/Roots`)
         .then((response) => response.json())
         .then((data) => {
           console.log(data.main);

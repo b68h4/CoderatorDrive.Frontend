@@ -15,7 +15,6 @@
         data-ad-client="ca-pub-4894867893560937"
         data-ad-slot="3080583317"
         data-full-width-responsive="yes"
-        is-new-ads-code="yes"
       ></InFeedAdsense>
     </div>
     <v-divider style="margin: 15px"></v-divider>
@@ -24,7 +23,6 @@
         data-ad-client="ca-pub-4894867893560937"
         data-ad-slot="5459975273"
         data-full-width-responsive="yes"
-        is-new-ads-code="yes"
       >
       </Adsense>
     </div>
@@ -32,13 +30,18 @@
 </template>
 <script>
 import Plyr from "plyr";
-const baseUrl = "http://192.168.1.22:3933";
+import "@/design/player.css";
+import { mapState } from "vuex";
+
 export default {
   name: "Player",
   data() {
     return {
       plyr: null,
     };
+  },
+  computed: {
+    ...mapState(["baseUrl"]),
   },
   mounted() {
     this.$router.beforeEach(() => {
@@ -50,7 +53,7 @@ export default {
       this.plyr = new Plyr(document.getElementById("plyr"));
     }
 
-    this.plyr.media.src = `${baseUrl}/System/Player?data=${this.$route.query.file}`;
+    this.plyr.media.src = `${this.baseUrl}/System/Player?data=${this.$route.query.file}`;
   },
 };
 </script>
