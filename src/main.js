@@ -2,13 +2,12 @@ import Vue from "vue";
 
 import App from "./App.vue";
 import vuetify from "./plugins/vuetify";
-import store from "./store";
-
+import store from "./plugins/store";
 import Ads from "vue-google-adsense";
 import * as Sentry from "@sentry/vue";
 import { Integrations } from "@sentry/tracing";
 import VueGtag from "vue-gtag";
-import router from "./router";
+import router from "./plugins/router";
 
 Vue.config.productionTip = false;
 Vue.use(require("vue-script2"));
@@ -26,13 +25,7 @@ Sentry.init({
   integrations: [
     new Integrations.BrowserTracing({
       routingInstrumentation: Sentry.vueRouterInstrumentation(router),
-      tracingOrigins: [
-        "localhost",
-        "127.0.0.1",
-        "alloweddomain2.com",
-        "alloweddomain.com",
-        /^\//,
-      ],
+      tracingOrigins: ["alloweddomain.com", /^\//],
     }),
   ],
   tracesSampleRate: 1.0,
@@ -40,7 +33,7 @@ Sentry.init({
 Vue.use(
   VueGtag,
   {
-    config: { id: "G-WP7N9TN6JV" },
+    config: { id: "G-G0ZW3R4W9N" },
     appName: "Depo v3",
     pageTrackerScreenviewEnabled: true,
   },

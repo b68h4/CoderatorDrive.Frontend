@@ -22,13 +22,13 @@ export default new Vuex.Store({
       },
       {
         title: "Coderator",
-        icon: "mdi-telegram",
+        icon: "fa-brands fa-telegram",
         link: "https://t.me/coderator",
         target: "_blank",
       },
       {
         title: "Coderator | Topluluk",
-        icon: "mdi-telegram",
+        icon: "fa-brands fa-telegram",
         link: "https://t.me/coderatorchat",
         target: "_blank",
       },

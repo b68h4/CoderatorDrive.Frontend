@@ -37,7 +37,7 @@
       </div>
       <div class="pa-4 text-center">
         <a href="https://t.me/coderator" target="_blank">Coderator</a>
-        <span> Adına Geliştirilmiştir.</span>
+        <span> adına geliştirilmiştir.</span>
       </div>
       <v-card-actions>
         <v-spacer></v-spacer>

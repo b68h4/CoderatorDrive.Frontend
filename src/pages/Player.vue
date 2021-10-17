@@ -9,22 +9,21 @@
     </v-card>
     <v-divider style="margin: 15px"></v-divider>
     <div align="center">
-      <InFeedAdsense
-        data-ad-format="fluid"
-        data-ad-layout-key="-ak+bq-2w-7v+p8"
-        data-ad-client="ca-pub-4894867893560937"
-        data-ad-slot="3080583317"
-        data-full-width-responsive="yes"
-      ></InFeedAdsense>
-    </div>
-    <v-divider style="margin: 15px"></v-divider>
-    <div align="center">
       <Adsense
         data-ad-client="ca-pub-4894867893560937"
-        data-ad-slot="5459975273"
+        data-ad-slot="2208152013"
         data-full-width-responsive="yes"
       >
       </Adsense>
+    </div>
+    <div align="center" style="margin-top:3px;">
+      <InFeedAdsense
+        data-ad-format="fluid"
+        data-ad-layout-key="-aj+bq-36-7j+pr"
+        data-ad-client="ca-pub-4894867893560937"
+        data-ad-slot="6100307329"
+        data-full-width-responsive="yes"
+      ></InFeedAdsense>
     </div>
   </v-container>
 </template>
@@ -38,13 +37,25 @@ export default {
   data() {
     return {
       plyr: null,
+      meta: null,
     };
   },
   computed: {
     ...mapState(["baseUrl"]),
   },
+  methods: {
+    fill(id) {
+      fetch(`${this.baseUrl}/System/Query?id=${id}`)
+        .then((response) => response.json())
+        .then((data) => {
+          document.title = data.Name;
+          this.meta = data;
+        });
+    },
+  },
   mounted() {
     this.$router.beforeEach(() => {
+      this.$store.state.searchData = null;
       this.plyr.stop();
       this.plyr.media.src = "";
     });
@@ -52,7 +63,7 @@ export default {
     if (this.plyr == null) {
       this.plyr = new Plyr(document.getElementById("plyr"));
     }
-
+    this.fill(this.$route.query.file);
     this.plyr.media.src = `${this.baseUrl}/System/Player?data=${this.$route.query.file}`;
   },
 };

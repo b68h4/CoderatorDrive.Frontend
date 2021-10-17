@@ -1,25 +1,16 @@
 <template>
-  <v-container>
+  <v-container fluid>
+    <div align="center">
+      <InFeedAdsense
+        data-ad-format="fluid"
+        data-ad-layout-key="-bc+c9-4n-fp+1a1"
+        data-ad-client="ca-pub-4894867893560937"
+        data-ad-slot="7858991996"
+        data-full-width-responsive="yes"
+      >
+      </InFeedAdsense>
+    </div>
     <iframe class="reader" v-bind:src="url"></iframe>
-
-    <!-- <div class="reader" v-if="support" id="pdf"></div> -->
-    <!-- <v-container v-else>
-      <v-spacer></v-spacer>
-      <v-card align="center" class="text-center">
-        <div style="padding: 25px;" class="text-center">
-          <h1>Tarayıcınız PDF görüntüleme özelliğini desteklemiyor.</h1>
-          <h4>
-            Görünüşe göre mobil tarayıcı kullanıyorsunuz. Mobil tarayıcılar
-            pdf-viewer özelliğini desteklemez. Bilgisayarınızdan pdfleri
-            okuyabilir veya mobil cihazınıza dosyayı indirip 3.parti programlar
-            ile okuyabilirsiniz.
-          </h4>
-          <v-btn color="green" style="margin-top: 10px;" @click="download"
-            >Bu PDF'yi İndir</v-btn
-          >
-        </div>
-      </v-card>
-    </v-container> -->
   </v-container>
 </template>
 

@@ -10,11 +10,11 @@
       >
       </InFeedAdsense>
     </div>
-    <v-divider style="margin: 15px"></v-divider>
-    <div align="center">
+
+    <div align="center" style="margin-top: 3px;">
       <Adsense
         data-ad-client="ca-pub-4894867893560937"
-        data-ad-slot="6581485251"
+        data-ad-slot="3710287017"
         data-full-width-responsive="yes"
       >
       </Adsense>
@@ -149,7 +149,7 @@
     </div>
 
     <p v-if="items != null" style="text-align: center; margin-top: 6px">
-      {{ filteredItems.length }} Öğe Gösteriliyor.
+      {{ filteredItems.length }} öge gösteriliyor.
     </p>
   </div>
 </template>
@@ -191,13 +191,14 @@ export default {
     //   this.processUrl();
     // };
     this.$router.afterEach(() => {
+      this.$store.state.searchData = null;
       this.processUrl();
     });
   },
 
   methods: {
     open: function(item) {
-      console.log(this.$route);
+      this.$store.state.searchData = null;
       this.$router.push({
         path: this.$route.path,
         query: { ...this.$route.query, folder: item.Id },

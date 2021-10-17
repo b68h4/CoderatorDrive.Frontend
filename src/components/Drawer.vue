@@ -29,7 +29,7 @@
             class="justify-center"
             v-model="donotshow"
             @click.stop="msgclck"
-            label="Hoşgeldin Mesajını Gösterme"
+            label="Hoşgeldin mesajını gösterme."
           ></v-checkbox>
         </v-list-item>
       </v-list>
