@@ -1,4 +1,4 @@
-# arsiv
+# CoderatorDepo.Frontend
 
 ## Project setup
 ```
