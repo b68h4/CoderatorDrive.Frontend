@@ -5,35 +5,13 @@
       <div class="pa-12 text-center">
         <p>Kullanılan Teknolojiler:</p>
 
-        <v-icon
-          color="green"
-          class="click-cursor"
-          size="28px"
-          title="Vue.js"
-          @click="toLink('https://vuejs.org')"
-        >
-          mdi-vuejs</v-icon
-        >
-        <v-icon
-          color="green"
-          class="click-cursor"
-          title="Vuetify.js"
-          size="28px"
-          @click="toLink('https://vuetifyjs.com')"
-          >mdi-vuetify</v-icon
-        >
-        <v-icon
-          color="purple"
-          class="click-cursor"
-          title=".NET / C#"
-          size="28px"
-          @click="toLink('https://dotnet.microsoft.com/')"
-          >mdi-dot-net</v-icon
-        >
+        <v-icon color="green" class="click-cursor" size="28px" title="Vue.js" @click="toLink('https://vuejs.org')"> mdi-vuejs</v-icon>
+        <v-icon color="green" class="click-cursor" title="Vuetify.js" size="28px" @click="toLink('https://vuetifyjs.com')">mdi-vuetify</v-icon>
+        <v-icon color="purple" class="click-cursor" title=".NET / C#" size="28px" @click="toLink('https://dotnet.microsoft.com/')">mdi-dot-net</v-icon>
       </div>
       <div class="pa-4 text-center">
         <p>Geliştirici:</p>
-        <a href="https://t.me/bsggr78" target="_blank">@bsggr78</a>
+        <a href="https://t.me/b68h4" target="_blank">@b68h4</a>
       </div>
       <div class="pa-4 text-center">
         <a href="https://t.me/coderator" target="_blank">Coderator</a>

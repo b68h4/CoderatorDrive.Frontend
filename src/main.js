@@ -20,8 +20,7 @@ Vue.use(Ads.AutoAdsense, {
 });
 Sentry.init({
   Vue,
-  dsn:
-    "SENTRYDSN",
+  dsn: "SENTRYDSN",
   integrations: [
     new Integrations.BrowserTracing({
       routingInstrumentation: Sentry.vueRouterInstrumentation(router),

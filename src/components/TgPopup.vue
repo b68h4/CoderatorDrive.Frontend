@@ -12,12 +12,7 @@
                 <v-card-subtitle>
                   <h2>Coderator</h2>
                 </v-card-subtitle>
-                <v-btn
-                  href="https://t.me/coderator"
-                  @click="join('channel')"
-                  target="_blank"
-                  >Katıl</v-btn
-                >
+                <v-btn href="https://t.me/coderator" @click="join('channel')" target="_blank">Katıl</v-btn>
               </div>
             </v-card>
           </v-col>
@@ -29,12 +24,7 @@
                 <v-card-subtitle>
                   <h2>Coderator | Topluluk</h2>
                 </v-card-subtitle>
-                <v-btn
-                  href="https://t.me/coderatorchat"
-                  @click="join('chat')"
-                  target="_blank"
-                  >Katıl</v-btn
-                >
+                <v-btn href="https://t.me/coderatorchat" @click="join('chat')" target="_blank">Katıl</v-btn>
               </div>
             </v-card>
           </v-col>
@@ -42,8 +32,7 @@
       </v-container>
 
       <v-card-actions>
-        <v-checkbox v-model="donotshow" label="Bir daha gösterme.">
-        </v-checkbox>
+        <v-checkbox v-model="donotshow" label="Bir daha gösterme."> </v-checkbox>
         <v-spacer></v-spacer>
         <v-btn color="primary" text @click="ok"> Tamam! </v-btn>
       </v-card-actions>
